@@ -3707,3 +3707,7 @@ img{
 .modalPoint table{
   margin-top: 2rem;
 }
+
+.active{
+  color:#f56a6a !important; 
+}

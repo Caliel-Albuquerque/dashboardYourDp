@@ -1,38 +1,42 @@
-
 // Função para abrir o modal e exibir o ID do usuário
-function openModal(pontos) {
-  const modal = document.getElementById("modalPoint");
- 
+function openModal(ausencias) {
+  const modal = document.getElementById("modalAusencia");
+
   const tableBody = document.querySelector("#idTable tbody");
   tableBody.innerHTML = "";
 
-  pontos.forEach(ponto => {
+  ausencias.shift()
+
+  ausencias.forEach(ausencia => {
     const row = document.createElement("tr");
 
     const dia = document.createElement("td");
-    dia.textContent = ponto.data;
+    dia.textContent = ausencia.dia;
     row.appendChild(dia);
 
-    const pontoEntrada = document.createElement("td");
-    pontoEntrada.textContent = ponto.entrada;
-    row.appendChild(pontoEntrada);
+    const motivo = document.createElement("td");
+    motivo.textContent = ausencia.motivo;
+    row.appendChild(motivo);
 
-    const pontoIntervalo = document.createElement("td");
-    pontoIntervalo.textContent = ponto.intervalo === null ? "Sem valor" : ponto.intervalo;
-    row.appendChild(pontoIntervalo);
+    const linkDownload = document.createElement("a");
+    linkDownload.href = ausencia.arquivo
+    linkDownload.download = ausencia.arquivo
+    linkDownload.textContent = "Baixar arquivo"
 
-    const pontoVolta = document.createElement("td");
-    pontoVolta.textContent = ponto.volta === null ? "Sem valor" : ponto.volta;
-    row.appendChild(pontoVolta);
+    linkDownload.addEventListener("click", function (event) {
+      // Impedir o comportamento padrão do link
+      event.preventDefault();
+      // Abrir a URL do arquivo em uma nova janela ou guia do navegador
+      window.open(this.href, "_blank");
+    });
 
-    const pontoSaida = document.createElement("td");
-    pontoSaida.textContent = ponto.saida;
-    row.appendChild(pontoSaida);
+    row.appendChild(linkDownload);
+
 
     tableBody.appendChild(row);
   })
 
-  
+
   modal.style.display = "block";
   window.scrollTo({
     top: 0,
@@ -42,7 +46,7 @@ function openModal(pontos) {
 
 // Função para fechar o modal
 function closeModal() {
-  const modal = document.getElementById("modalPoint");
+  const modal = document.getElementById("modalAusencia");
   modal.style.display = "none";
 }
 
@@ -71,8 +75,8 @@ async function fetchUsers() {
 
     const actionsCell = document.createElement("td");
     const button = document.createElement("button");
-    button.textContent = "Mostrar";
-    button.addEventListener("click", () => openModal(user.ponto));
+    button.textContent = "Verificar";
+    button.addEventListener("click", () => openModal(user.ausencia));
     actionsCell.appendChild(button);
 
     row.appendChild(actionsCell);
