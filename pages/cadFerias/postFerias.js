@@ -34,7 +34,7 @@ function openModal(nameUser, idUser) {
     let dataFim = sessionStorage.getItem("dataFim")
 
     try {
-      fetch(`http://localhost:3000/user/${idUser}/updateFerias`, {
+      fetch(`https://api-yourdp.onrender.com/user/${idUser}/updateFerias`, {
         method: "PUT",
         headers: {
           'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ function closeModal() {
 
 // Função para buscar e exibir os usuários na tabela
 async function fetchUsers() {
-  const response = await fetch('http://localhost:3000/users');
+  const response = await fetch('https://api-yourdp.onrender.com/users');
   const users = await response.json();
 
   const tableBody = document.querySelector("#userTable tbody");
