@@ -7,30 +7,30 @@ function openModal(idUser) {
   let widget_cloudinary = cloudinary.createUploadWidget({
     cloudName: 'dkt07q4bz',
     uploadPreset: 'ml_default',
-    // language: "pt",  
-    // text: {
+    language: "pt",  
+    text: {
 
-    //   "pt":{
-    //     "or": "ou",
-    //     "menu":{
-    //       "files": "Meus arquivos"
-    //     },
-    //     "queue":{
-    //       "title": "Seu arquivo",
-    //       "done": "Enviar",
-    //       "upload_more": "Enviar mais",
-    //     },
-    //     "local": {
-    //       "browse": "Enviar arquivo",
-    //       "dd_title_single": "Coloque seu arquivo aqui",
-    //       "dd_title_multi": "Coloque seu arquivo aqui",
-    //       "drop_title_single": "Drop a file to upload",
-    //       "drop_title_multiple": "Drop files to upload"
-    //     },
-    //   }
-      
-    // },
-    // sources: ['local'],
+      "pt":{
+        "or": "ou",
+        "menu":{
+          "files": "Meus arquivos"
+        },
+        "queue":{
+          "title": "Seu arquivo",
+          "done": "Enviar",
+          "upload_more": "Enviar mais",
+        },
+        "local": {
+          "browse": "Enviar arquivo",
+          "dd_title_single": "Coloque seu arquivo aqui",
+          "dd_title_multi": "Coloque seu arquivo aqui",
+          "drop_title_single": "Drop a file to upload",
+          "drop_title_multiple": "Drop files to upload"
+        },
+      }
+
+    },
+    sources: ['local'],
   }, (err, result) => {
     if (!err && result && result.event === 'success') {
       console.log('Imagen subida con éxito', result.info);
@@ -44,42 +44,50 @@ function openModal(idUser) {
 
       const dataFormatada = dia + "/" + mes + "/" + ano;
 
+      sessionStorage.setItem("dataFormatada", dataFormatada);
+      sessionStorage.setItem("imgUrl", imagenSrc);
+
       const formImage = document.getElementById("formImage")
 
 
-      formImage.addEventListener('submit', () => {
-
-        fetch(`https://api-yourdp.onrender.com/user/${idUser}/updateFinanceiro`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            contracheque: {
-              diaArquivo: dataFormatada,
-              arquivoContracheque: imagenSrc
-            }
-          })
-        })
-          .then((res) => res.json())
-          .then((data) => {
-
-
-            alert("Ausencia cadastrada")
-
-
-            if (data.msg) {
-              alert(data.msg)
-            } else {
-              alert('Error ao cadastrar o ponto')
-            }
-          })
-          .catch((err) => console.log(err))
-      })
 
 
     }
   });
+
+  formImage.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    let dataFormatada = sessionStorage.getItem("dataFormatada")
+    let imageUrl = sessionStorage.getItem("imgUrl")
+
+    fetch(`https://api-yourdp.onrender.com/user/${idUser}/updateFinanceiro`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        contracheque: {
+          diaArquivo: dataFormatada,
+          arquivoContracheque: imageUrl
+        }
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+
+
+        alert("Ausencia cadastrada")
+
+
+        if (data.msg) {
+          alert(data.msg)
+        } else {
+          alert('Error ao cadastrar o ponto')
+        }
+      })
+      .catch((err) => console.log(err))
+  })
 
 
 
