@@ -3711,3 +3711,11 @@ img{
 .active{
   color:#f56a6a !important; 
 }
+
+#spinner {
+  color: #007bff; /* Cor azul padrão */
+  width: 3rem; /* Largura do spinner */
+  height: 3rem; /* Altura do spinner */
+  margin: auto; /* Centralizar o spinner */
+  display: none; /* Ocultar inicialmente */
+}

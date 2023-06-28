@@ -80,6 +80,12 @@ async function fetchUsers() {
   });
 }
 
+const spinner = document.getElementById('spinner');
+spinner.style.display = 'block';
+
 // Chamar a função fetchUsers para buscar e exibir os usuários na tabela
-fetchUsers();
+fetchUsers().then(() => {
+  
+  spinner.style.display = 'none';
+});
 

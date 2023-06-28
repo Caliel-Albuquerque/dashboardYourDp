@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../../assets/css/main.css" />
   <link rel="stylesheet" href="./style.css">
   <!--ICONSCOUT-->
-	<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 </head>
 
 <body class="is-preload">
@@ -50,11 +50,14 @@
             </tbody>
           </table>
 
+          <div id="spinner" class="spinner-border" role="status">
+            <span class="visually-hidden">Carregando...</span>
+          </div>
         </section>
 
         <div id="modalFerias" class="modalPoint">
           <button id="closeModal" onclick="closeModal()" class="btnClose"><i class="uil uil-multiply"></i></button>
-          
+
           <span id="nameUser"></span>
 
           <form id="form">
@@ -92,7 +95,7 @@
           <ul>
             <li><a href="../cadUser/index.html">Cadastro</a></li>
             <li><a href="../cadContracheque/index.html">Financeiro</a></li>
-            
+
             <li><a class="active" href="elements.html">Férias</a></li>
             <li><a href="./../Ausencias/index.html">Ausência</a></li>
           </ul>
