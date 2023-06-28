@@ -14,7 +14,10 @@ function openModal(nameUser, idUser) {
     var date2 = new Date(document.getElementById('fim').value);
 
     var dataInicio = document.getElementById('inicio').value;
+   
+
     var dataFim = document.getElementById('fim').value
+    
 
     var diffTime = Math.abs(date2 - date1);
     var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));

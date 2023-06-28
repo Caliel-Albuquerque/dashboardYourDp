@@ -7,30 +7,30 @@ function openModal(idUser) {
   let widget_cloudinary = cloudinary.createUploadWidget({
     cloudName: 'dkt07q4bz',
     uploadPreset: 'ml_default',
-    language: "pt",  
-    text: {
+    // language: "pt",  
+    // text: {
 
-      "pt":{
-        "or": "ou",
-        "menu":{
-          "files": "Meus arquivos"
-        },
-        "queue":{
-          "title": "Seu arquivo",
-          "done": "Enviar",
-          "upload_more": "Enviar mais",
-        },
-        "local": {
-          "browse": "Enviar arquivo",
-          "dd_title_single": "Coloque seu arquivo aqui",
-          "dd_title_multi": "Coloque seu arquivo aqui",
-          "drop_title_single": "Drop a file to upload",
-          "drop_title_multiple": "Drop files to upload"
-        },
-      }
+    //   "pt":{
+    //     "or": "ou",
+    //     "menu":{
+    //       "files": "Meus arquivos"
+    //     },
+    //     "queue":{
+    //       "title": "Seu arquivo",
+    //       "done": "Enviar",
+    //       "upload_more": "Enviar mais",
+    //     },
+    //     "local": {
+    //       "browse": "Enviar arquivo",
+    //       "dd_title_single": "Coloque seu arquivo aqui",
+    //       "dd_title_multi": "Coloque seu arquivo aqui",
+    //       "drop_title_single": "Drop a file to upload",
+    //       "drop_title_multiple": "Drop files to upload"
+    //     },
+    //   }
       
-    },
-    sources: ['local'],
+    // },
+    // sources: ['local'],
   }, (err, result) => {
     if (!err && result && result.event === 'success') {
       console.log('Imagen subida con éxito', result.info);
