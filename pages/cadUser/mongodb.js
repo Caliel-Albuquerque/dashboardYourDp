@@ -30,6 +30,7 @@ formRegister.addEventListener("submit", (event) => {
 
     const ausencia =[{}]
 
+    const contracheque =[{}]
 
     const data = {
         name: nameInput,
@@ -38,7 +39,8 @@ formRegister.addEventListener("submit", (event) => {
         confirmpassword: confirmPasswordInput,
         ponto: ponto,
         ferias: ferias,
-        ausencia: ausencia
+        ausencia: ausencia,
+        contracheque: contracheque
     };
 
 
